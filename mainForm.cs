@@ -24,8 +24,6 @@ namespace catalog_mover
         private void ExitBtn_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
-            //test line
-            //comment line 1
         }
 
         public void selectFileBtn_Click(object sender, EventArgs e)
