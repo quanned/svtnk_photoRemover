@@ -1,0 +1,11 @@
+E:\work\vs\svitanak\catalog_mover\bin\Debug\catalog_mover.exe.config
+E:\work\vs\svitanak\catalog_mover\bin\Debug\catalog_mover.exe
+E:\work\vs\svitanak\catalog_mover\bin\Debug\catalog_mover.pdb
+E:\work\vs\svitanak\catalog_mover\obj\Debug\catalog_mover.csprojAssemblyReference.cache
+E:\work\vs\svitanak\catalog_mover\obj\Debug\catalog_mover.mainForm.resources
+E:\work\vs\svitanak\catalog_mover\obj\Debug\catalog_mover.Properties.Resources.resources
+E:\work\vs\svitanak\catalog_mover\obj\Debug\catalog_mover.csproj.GenerateResource.cache
+E:\work\vs\svitanak\catalog_mover\obj\Debug\catalog_mover.csproj.CoreCompileInputs.cache
+E:\work\vs\svitanak\catalog_mover\obj\Debug\catalog_mover.exe
+E:\work\vs\svitanak\catalog_mover\obj\Debug\catalog_mover.pdb
+E:\work\vs\svitanak\catalog_mover\obj\Debug\catalog_mover.csproj.ResolveComReference.cache
