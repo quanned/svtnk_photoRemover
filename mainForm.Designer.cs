@@ -76,7 +76,7 @@
             // pathFileL
             // 
             this.pathFileL.AutoSize = true;
-            this.pathFileL.Location = new System.Drawing.Point(19, 330);
+            this.pathFileL.Location = new System.Drawing.Point(19, 320);
             this.pathFileL.Name = "pathFileL";
             this.pathFileL.Size = new System.Drawing.Size(68, 13);
             this.pathFileL.TabIndex = 2;
