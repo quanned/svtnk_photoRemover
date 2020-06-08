@@ -15,6 +15,7 @@ namespace catalog_mover
 {
     public partial class mainForm : Form
     {
+        public const char comma = ',';
         public mainForm()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace catalog_mover
             Environment.Exit(0);
         }
 
-        public void selectFileBtn_Click(object sender, EventArgs e)
+        public void SelectFileBtn_Click(object sender, EventArgs e)
         {
 
             if (opf.ShowDialog() == DialogResult.Cancel)
@@ -44,11 +45,11 @@ namespace catalog_mover
             ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[1];
 
             // Указываем номер столбца (таблицы Excel) из которого будут считываться данные.
-            int numCol = 2;
+            int photoCol = 2;
 
-            Range usedColumn = ObjWorkSheet.UsedRange.Columns[numCol];
-            System.Array myvalues = (System.Array)usedColumn.Cells.Value2;
-            string[] strArray = myvalues.OfType<object>().Select(o => o.ToString()).ToArray();
+            Range photoColumn = ObjWorkSheet.UsedRange.Columns[photoCol];
+            System.Array photoValues = (System.Array)photoColumn.Cells.Value2;
+            string[] photoArray = photoValues.OfType<object>().Select(o => o.ToString()).ToArray();
 
             //Workbook xlWorkbook = Workbooks.Open(Path.GetFullPath(pathToFile));
            // Worksheet xlWorksheet = (Worksheet)ObjWorkSheet.Sheet[1].get_Item(1);
@@ -65,15 +66,47 @@ namespace catalog_mover
 
 
             // Выходим из программы Excel.
-            ObjExcel.Quit();
+            
 
             for(int i = 1; i < rowCount; i++)
             {
                 
-                    selectedFilesLB.Items.Add(strArray[i]);
+                    photoFilesLB.Items.Add(photoArray[i]);
                
             };
+            PhotoCountL.Text += photoFilesLB.Items.Count;
 
+
+            int morePhotoCol = 3;
+
+            Range morePhottoColumn = ObjWorkSheet.UsedRange.Columns[morePhotoCol];
+            Array morePhotoValues = (Array)morePhottoColumn.Cells.Value2;
+            string[] morePhotoArray = morePhotoValues.OfType<object>().Select(o => o.ToString()).ToArray();
+
+            ObjExcel.Quit();
+
+            for (int i = 1; i < rowCount; i++)
+            {
+                if (morePhotoArray[i] == "")
+                {
+                    continue;
+                }
+                else
+                {
+                    /*if (morePhotoArray[i].IndexOf(comma) >= 1)
+                    {
+                        string[] morePhotosStrArr = morePhotoArray[i].Split(comma);
+                        for(int t = 0; t <= morePhotosStrArr.Length; t++)
+                        {
+                            TempLB.Items.Add(morePhotosStrArr[i]);
+                        }
+
+                    }*/
+                    morePhotoFilesLB.Items.Add(morePhotoArray[i]);
+                };
+            };
+
+            MorePhotoCountL.Text += morePhotoFilesLB.Items.Count;
 
         }
 

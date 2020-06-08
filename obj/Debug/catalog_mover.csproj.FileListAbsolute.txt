@@ -9,3 +9,14 @@ E:\work\vs\svitanak\catalog_mover\obj\Debug\catalog_mover.csproj.CoreCompileInpu
 E:\work\vs\svitanak\catalog_mover\obj\Debug\catalog_mover.exe
 E:\work\vs\svitanak\catalog_mover\obj\Debug\catalog_mover.pdb
 E:\work\vs\svitanak\catalog_mover\obj\Debug\catalog_mover.csproj.ResolveComReference.cache
+D:\work\svitanak\svtnk_photoRemover\bin\Debug\catalog_mover.exe.config
+D:\work\svitanak\svtnk_photoRemover\bin\Debug\catalog_mover.exe
+D:\work\svitanak\svtnk_photoRemover\bin\Debug\catalog_mover.pdb
+D:\work\svitanak\svtnk_photoRemover\obj\Debug\catalog_mover.csprojAssemblyReference.cache
+D:\work\svitanak\svtnk_photoRemover\obj\Debug\catalog_mover.csproj.ResolveComReference.cache
+D:\work\svitanak\svtnk_photoRemover\obj\Debug\catalog_mover.mainForm.resources
+D:\work\svitanak\svtnk_photoRemover\obj\Debug\catalog_mover.Properties.Resources.resources
+D:\work\svitanak\svtnk_photoRemover\obj\Debug\catalog_mover.csproj.GenerateResource.cache
+D:\work\svitanak\svtnk_photoRemover\obj\Debug\catalog_mover.csproj.CoreCompileInputs.cache
+D:\work\svitanak\svtnk_photoRemover\obj\Debug\catalog_mover.exe
+D:\work\svitanak\svtnk_photoRemover\obj\Debug\catalog_mover.pdb
