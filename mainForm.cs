@@ -9,7 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft;
-using Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Interop;
+
 
 namespace catalog_mover
 {
@@ -45,28 +46,15 @@ namespace catalog_mover
             ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[1];
 
             // Указываем номер столбца (таблицы Excel) из которого будут считываться данные.
-            int photoCol = 2;
-
-            Range photoColumn = ObjWorkSheet.UsedRange.Columns[photoCol];
+            int photoCol = 2;                      
+            Microsoft.Office.Interop.Excel.Range photoColumn = ObjWorkSheet.UsedRange.Columns[photoCol];
             System.Array photoValues = (System.Array)photoColumn.Cells.Value2;
             string[] photoArray = photoValues.OfType<object>().Select(o => o.ToString()).ToArray();
 
-            //Workbook xlWorkbook = Workbooks.Open(Path.GetFullPath(pathToFile));
-           // Worksheet xlWorksheet = (Worksheet)ObjWorkSheet.Sheet[1].get_Item(1);
-            
-
-
-            //Console.WriteLine("Count column: " + xlWorksheet.UsedRange.Columns.Count);
-
             int columnsCount = ObjWorkSheet.UsedRange.Columns.Count;
             int rowCount = ObjWorkSheet.UsedRange.Rows.Count;
-
             rowCountL.Text += rowCount;
             columnCountL.Text += columnsCount;
-
-
-            // Выходим из программы Excel.
-            
 
             for(int i = 1; i < rowCount; i++)
             {
@@ -77,9 +65,22 @@ namespace catalog_mover
             PhotoCountL.Text += photoFilesLB.Items.Count;
 
 
-            int morePhotoCol = 3;
+            int modelsCol = 1;
+            Microsoft.Office.Interop.Excel.Range modelsColumn = ObjWorkSheet.UsedRange.Columns[modelsCol];
+            System.Array modelsColumnValues = (System.Array)modelsColumn.Cells.Value2;
+            string[] modelsArray = modelsColumnValues.OfType<object>().Select(o => o.ToString()).ToArray();
 
-            Range morePhottoColumn = ObjWorkSheet.UsedRange.Columns[morePhotoCol];
+            for (int i = 1; i < rowCount; i++)
+            {
+
+                ModelsLB.Items.Add(modelsArray[i]);
+
+            };
+            ModelsCountL.Text += ModelsLB.Items.Count;
+
+
+            int morePhotoCol = 3;
+            Microsoft.Office.Interop.Excel.Range morePhottoColumn = ObjWorkSheet.UsedRange.Columns[morePhotoCol];
             Array morePhotoValues = (Array)morePhottoColumn.Cells.Value2;
             string[] morePhotoArray = morePhotoValues.OfType<object>().Select(o => o.ToString()).ToArray();
 
@@ -93,23 +94,60 @@ namespace catalog_mover
                 }
                 else
                 {
-                    /*if (morePhotoArray[i].IndexOf(comma) >= 1)
-                    {
-                        string[] morePhotosStrArr = morePhotoArray[i].Split(comma);
-                        for(int t = 0; t <= morePhotosStrArr.Length; t++)
-                        {
-                            TempLB.Items.Add(morePhotosStrArr[i]);
-                        }
-
-                    }*/
+                    //if (morephotoarray[i].indexof(comma) >= 1)
+                    //{
+                    //    string[] morephotosstrarr = morephotoarray[i].split(comma);
+                    //    for(int t = 0; t <= morephotosstrarr.length; t++)
+                    //    {
+                    //        templb.items.add(morephotosstrarr[i]);
+                    //    }
+                    //}
                     morePhotoFilesLB.Items.Add(morePhotoArray[i]);
                 };
             };
-
             MorePhotoCountL.Text += morePhotoFilesLB.Items.Count;
+
+            string catalogPath = @"j:/katalog";
+            string tempPath = @"d:/photo_for_site";
+
+            DirectoryInfo dirInfo = new DirectoryInfo(tempPath);
+            if (!dirInfo.Exists)
+            {
+                dirInfo.Create();
+            };
+
+
+            for (int i = 1; i < rowCount; i++)
+            {
+
+                //string curFilePath = String.Concat(catalogPath, "/", modelsArray[i], "/", photoArray[i]);
+                string curFilePath = String.Concat(catalogPath, "/", photoArray[i].Substring(0, photoArray[i].Length - 4), "/", photoArray[i]);
+                string curCatalogPath = String.Concat(tempPath, "/", photoArray[i]);
+                TempLB.Items.Add(curFilePath);
+                if (Directory.EnumerateFiles(curCatalogPath, curFilePath, SearchOption.TopDirectoryOnly).Count() == 0)
+                {
+                    continue;
+                }
+                System.IO.File.Copy( curCatalogPath, curFilePath, true);
+
+
+                if (i == rowCount)
+                {
+                    MessageBox.Show("Копирвоание окончено, количество перемещенных файлов: " + i.ToString());
+                }
+            };
+
+            TempCountL.Text += TempLB.Items.Count;
+
+
+
+
 
         }
 
+        private void MoveBtn_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

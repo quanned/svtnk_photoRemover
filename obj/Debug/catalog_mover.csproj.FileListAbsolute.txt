@@ -20,3 +20,14 @@ D:\work\svitanak\svtnk_photoRemover\obj\Debug\catalog_mover.csproj.GenerateResou
 D:\work\svitanak\svtnk_photoRemover\obj\Debug\catalog_mover.csproj.CoreCompileInputs.cache
 D:\work\svitanak\svtnk_photoRemover\obj\Debug\catalog_mover.exe
 D:\work\svitanak\svtnk_photoRemover\obj\Debug\catalog_mover.pdb
+D:\work\svtnk_photoRemover\bin\Debug\catalog_mover.exe.config
+D:\work\svtnk_photoRemover\obj\Debug\catalog_mover.csproj.ResolveComReference.cache
+D:\work\svtnk_photoRemover\obj\Debug\catalog_mover.exe
+D:\work\svtnk_photoRemover\obj\Debug\catalog_mover.pdb
+D:\work\svtnk_photoRemover\obj\Debug\catalog_mover.csprojResolveAssemblyReference.cache
+D:\work\svtnk_photoRemover\obj\Debug\Interop.TFCOfficeShimLib.dll
+D:\work\svtnk_photoRemover\obj\Debug\catalog_mover.mainForm.resources
+D:\work\svtnk_photoRemover\obj\Debug\catalog_mover.Properties.Resources.resources
+D:\work\svtnk_photoRemover\obj\Debug\catalog_mover.csproj.GenerateResource.Cache
+D:\work\svtnk_photoRemover\bin\Debug\catalog_mover.exe
+D:\work\svtnk_photoRemover\bin\Debug\catalog_mover.pdb
