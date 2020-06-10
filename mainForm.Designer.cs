@@ -46,6 +46,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.ModelsCountL = new System.Windows.Forms.Label();
             this.MoveBtn = new System.Windows.Forms.Button();
+            this.RemoveFileCountL = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // exitBtn
@@ -139,11 +140,11 @@
             // MorePhotoCountL
             // 
             this.MorePhotoCountL.AutoSize = true;
-            this.MorePhotoCountL.Location = new System.Drawing.Point(280, 261);
+            this.MorePhotoCountL.Location = new System.Drawing.Point(280, 247);
             this.MorePhotoCountL.Name = "MorePhotoCountL";
-            this.MorePhotoCountL.Size = new System.Drawing.Size(66, 13);
+            this.MorePhotoCountL.Size = new System.Drawing.Size(46, 13);
             this.MorePhotoCountL.TabIndex = 4;
-            this.MorePhotoCountL.Text = "row count = ";
+            this.MorePhotoCountL.Text = "count = ";
             // 
             // TempLB
             // 
@@ -157,20 +158,20 @@
             // TempCountL
             // 
             this.TempCountL.AutoSize = true;
-            this.TempCountL.Location = new System.Drawing.Point(463, 261);
+            this.TempCountL.Location = new System.Drawing.Point(454, 247);
             this.TempCountL.Name = "TempCountL";
-            this.TempCountL.Size = new System.Drawing.Size(66, 13);
+            this.TempCountL.Size = new System.Drawing.Size(46, 13);
             this.TempCountL.TabIndex = 4;
-            this.TempCountL.Text = "row count = ";
+            this.TempCountL.Text = "count = ";
             // 
             // PhotoCountL
             // 
             this.PhotoCountL.AutoSize = true;
-            this.PhotoCountL.Location = new System.Drawing.Point(119, 261);
+            this.PhotoCountL.Location = new System.Drawing.Point(119, 247);
             this.PhotoCountL.Name = "PhotoCountL";
-            this.PhotoCountL.Size = new System.Drawing.Size(66, 13);
+            this.PhotoCountL.Size = new System.Drawing.Size(46, 13);
             this.PhotoCountL.TabIndex = 4;
-            this.PhotoCountL.Text = "row count = ";
+            this.PhotoCountL.Text = "count = ";
             // 
             // ModelsLB
             // 
@@ -193,11 +194,11 @@
             // ModelsCountL
             // 
             this.ModelsCountL.AutoSize = true;
-            this.ModelsCountL.Location = new System.Drawing.Point(21, 261);
+            this.ModelsCountL.Location = new System.Drawing.Point(19, 247);
             this.ModelsCountL.Name = "ModelsCountL";
-            this.ModelsCountL.Size = new System.Drawing.Size(66, 13);
+            this.ModelsCountL.Size = new System.Drawing.Size(40, 13);
             this.ModelsCountL.TabIndex = 4;
-            this.ModelsCountL.Text = "row count = ";
+            this.ModelsCountL.Text = "ount = ";
             // 
             // MoveBtn
             // 
@@ -209,6 +210,14 @@
             this.MoveBtn.UseVisualStyleBackColor = true;
             this.MoveBtn.Click += new System.EventHandler(this.MoveBtn_Click);
             // 
+            // RemoveFileCountL
+            // 
+            this.RemoveFileCountL.AutoSize = true;
+            this.RemoveFileCountL.Location = new System.Drawing.Point(598, 341);
+            this.RemoveFileCountL.Name = "RemoveFileCountL";
+            this.RemoveFileCountL.Size = new System.Drawing.Size(0, 13);
+            this.RemoveFileCountL.TabIndex = 8;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -216,6 +225,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.exitBtn;
             this.ClientSize = new System.Drawing.Size(800, 400);
+            this.Controls.Add(this.RemoveFileCountL);
             this.Controls.Add(this.MoveBtn);
             this.Controls.Add(this.ModelsLB);
             this.Controls.Add(this.label2);
@@ -261,6 +271,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label ModelsCountL;
         private System.Windows.Forms.Button MoveBtn;
+        private System.Windows.Forms.Label RemoveFileCountL;
     }
 }
 

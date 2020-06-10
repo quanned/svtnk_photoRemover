@@ -116,24 +116,30 @@ namespace catalog_mover
                 dirInfo.Create();
             };
 
+            int removeFilesCount = 0;
 
             for (int i = 1; i < rowCount; i++)
             {
-
+                string curFilePath;
                 //string curFilePath = String.Concat(catalogPath, "/", modelsArray[i], "/", photoArray[i]);
-                string curFilePath = String.Concat(catalogPath, "/", photoArray[i].Substring(0, photoArray[i].Length - 4), "/", photoArray[i]);
+                if (photoArray[i].IndexOf('_') >= 1)
+                {
+                    curFilePath = String.Concat(catalogPath, "/", photoArray[i].Substring(0, photoArray[i].Length - 4), "/", photoArray[i]);
+                }
+                else curFilePath = String.Concat(catalogPath, "/", photoArray[i]);
+               // string curFilePath = String.Concat(catalogPath, "/", photoArray[i].Substring(0, photoArray[i].Length - 4), "/", photoArray[i]);
                 string curCatalogPath = String.Concat(tempPath, "/", photoArray[i]);
                 TempLB.Items.Add(curFilePath);
-                if (Directory.EnumerateFiles(curCatalogPath, curFilePath, SearchOption.TopDirectoryOnly).Count() == 0)
+                //if (Directory.EnumerateFiles(curCatalogPath, curFilePath, SearchOption.TopDirectoryOnly).Count() == 0)
+                //{
+                //    continue;
+                //}
+                removeFilesCount++;
+                RemoveFileCountL.Text = "Progress: " + removeFilesCount + "/" + rowCount;
+                System.IO.File.Copy(curFilePath, curCatalogPath,  true);
+                if (i == rowCount-1)
                 {
-                    continue;
-                }
-                System.IO.File.Copy( curCatalogPath, curFilePath, true);
-
-
-                if (i == rowCount)
-                {
-                    MessageBox.Show("Копирвоание окончено, количество перемещенных файлов: " + i.ToString());
+                    MessageBox.Show("Копирвоание окончено, количество перемещенных файлов: " + removeFilesCount.ToString());
                 }
             };
 
