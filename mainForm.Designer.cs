@@ -45,7 +45,6 @@
             this.ModelsLB = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ModelsCountL = new System.Windows.Forms.Label();
-            this.MoveBtn = new System.Windows.Forms.Button();
             this.RemoveFileCountL = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -70,12 +69,16 @@
             // 
             // SelectFileBtn
             // 
-            this.SelectFileBtn.Location = new System.Drawing.Point(20, 281);
+            this.SelectFileBtn.BackColor = System.Drawing.Color.Black;
+            this.SelectFileBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SelectFileBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SelectFileBtn.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.SelectFileBtn.Location = new System.Drawing.Point(304, 363);
             this.SelectFileBtn.Name = "SelectFileBtn";
-            this.SelectFileBtn.Size = new System.Drawing.Size(82, 23);
+            this.SelectFileBtn.Size = new System.Drawing.Size(191, 27);
             this.SelectFileBtn.TabIndex = 1;
-            this.SelectFileBtn.Text = "select file";
-            this.SelectFileBtn.UseVisualStyleBackColor = true;
+            this.SelectFileBtn.Text = "select file and move photo";
+            this.SelectFileBtn.UseVisualStyleBackColor = false;
             this.SelectFileBtn.Click += new System.EventHandler(this.SelectFileBtn_Click);
             // 
             // opf
@@ -86,7 +89,7 @@
             // pathFileL
             // 
             this.pathFileL.AutoSize = true;
-            this.pathFileL.Location = new System.Drawing.Point(19, 320);
+            this.pathFileL.Location = new System.Drawing.Point(19, 327);
             this.pathFileL.Name = "pathFileL";
             this.pathFileL.Size = new System.Drawing.Size(68, 13);
             this.pathFileL.TabIndex = 2;
@@ -94,11 +97,11 @@
             // 
             // photoFilesLB
             // 
-            this.photoFilesLB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.photoFilesLB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.photoFilesLB.FormattingEnabled = true;
             this.photoFilesLB.Location = new System.Drawing.Point(122, 34);
             this.photoFilesLB.Name = "photoFilesLB";
-            this.photoFilesLB.Size = new System.Drawing.Size(143, 210);
+            this.photoFilesLB.Size = new System.Drawing.Size(143, 208);
             this.photoFilesLB.TabIndex = 3;
             // 
             // rowCountL
@@ -113,7 +116,7 @@
             // columnCountL
             // 
             this.columnCountL.AutoSize = true;
-            this.columnCountL.Location = new System.Drawing.Point(19, 367);
+            this.columnCountL.Location = new System.Drawing.Point(19, 363);
             this.columnCountL.Name = "columnCountL";
             this.columnCountL.Size = new System.Drawing.Size(83, 13);
             this.columnCountL.TabIndex = 4;
@@ -130,11 +133,11 @@
             // 
             // morePhotoFilesLB
             // 
-            this.morePhotoFilesLB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.morePhotoFilesLB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.morePhotoFilesLB.FormattingEnabled = true;
             this.morePhotoFilesLB.Location = new System.Drawing.Point(283, 34);
             this.morePhotoFilesLB.Name = "morePhotoFilesLB";
-            this.morePhotoFilesLB.Size = new System.Drawing.Size(157, 210);
+            this.morePhotoFilesLB.Size = new System.Drawing.Size(157, 208);
             this.morePhotoFilesLB.TabIndex = 3;
             // 
             // MorePhotoCountL
@@ -142,17 +145,17 @@
             this.MorePhotoCountL.AutoSize = true;
             this.MorePhotoCountL.Location = new System.Drawing.Point(280, 247);
             this.MorePhotoCountL.Name = "MorePhotoCountL";
-            this.MorePhotoCountL.Size = new System.Drawing.Size(46, 13);
+            this.MorePhotoCountL.Size = new System.Drawing.Size(71, 13);
             this.MorePhotoCountL.TabIndex = 4;
-            this.MorePhotoCountL.Text = "count = ";
+            this.MorePhotoCountL.Text = "MorePhoto = ";
             // 
             // TempLB
             // 
-            this.TempLB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TempLB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TempLB.FormattingEnabled = true;
             this.TempLB.Location = new System.Drawing.Point(457, 34);
             this.TempLB.Name = "TempLB";
-            this.TempLB.Size = new System.Drawing.Size(331, 210);
+            this.TempLB.Size = new System.Drawing.Size(331, 208);
             this.TempLB.TabIndex = 3;
             // 
             // TempCountL
@@ -160,26 +163,26 @@
             this.TempCountL.AutoSize = true;
             this.TempCountL.Location = new System.Drawing.Point(454, 247);
             this.TempCountL.Name = "TempCountL";
-            this.TempCountL.Size = new System.Drawing.Size(46, 13);
+            this.TempCountL.Size = new System.Drawing.Size(41, 13);
             this.TempCountL.TabIndex = 4;
-            this.TempCountL.Text = "count = ";
+            this.TempCountL.Text = "Path = ";
             // 
             // PhotoCountL
             // 
             this.PhotoCountL.AutoSize = true;
             this.PhotoCountL.Location = new System.Drawing.Point(119, 247);
             this.PhotoCountL.Name = "PhotoCountL";
-            this.PhotoCountL.Size = new System.Drawing.Size(46, 13);
+            this.PhotoCountL.Size = new System.Drawing.Size(47, 13);
             this.PhotoCountL.TabIndex = 4;
-            this.PhotoCountL.Text = "count = ";
+            this.PhotoCountL.Text = "Photo = ";
             // 
             // ModelsLB
             // 
-            this.ModelsLB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ModelsLB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ModelsLB.FormattingEnabled = true;
             this.ModelsLB.Location = new System.Drawing.Point(22, 34);
             this.ModelsLB.Name = "ModelsLB";
-            this.ModelsLB.Size = new System.Drawing.Size(80, 210);
+            this.ModelsLB.Size = new System.Drawing.Size(80, 208);
             this.ModelsLB.TabIndex = 6;
             // 
             // label2
@@ -196,24 +199,14 @@
             this.ModelsCountL.AutoSize = true;
             this.ModelsCountL.Location = new System.Drawing.Point(19, 247);
             this.ModelsCountL.Name = "ModelsCountL";
-            this.ModelsCountL.Size = new System.Drawing.Size(40, 13);
+            this.ModelsCountL.Size = new System.Drawing.Size(48, 13);
             this.ModelsCountL.TabIndex = 4;
-            this.ModelsCountL.Text = "ount = ";
-            // 
-            // MoveBtn
-            // 
-            this.MoveBtn.Location = new System.Drawing.Point(343, 341);
-            this.MoveBtn.Name = "MoveBtn";
-            this.MoveBtn.Size = new System.Drawing.Size(75, 23);
-            this.MoveBtn.TabIndex = 7;
-            this.MoveBtn.Text = "MOVE IT";
-            this.MoveBtn.UseVisualStyleBackColor = true;
-            this.MoveBtn.Click += new System.EventHandler(this.MoveBtn_Click);
+            this.ModelsCountL.Text = "Model = ";
             // 
             // RemoveFileCountL
             // 
             this.RemoveFileCountL.AutoSize = true;
-            this.RemoveFileCountL.Location = new System.Drawing.Point(598, 341);
+            this.RemoveFileCountL.Location = new System.Drawing.Point(614, 367);
             this.RemoveFileCountL.Name = "RemoveFileCountL";
             this.RemoveFileCountL.Size = new System.Drawing.Size(0, 13);
             this.RemoveFileCountL.TabIndex = 8;
@@ -226,7 +219,6 @@
             this.CancelButton = this.exitBtn;
             this.ClientSize = new System.Drawing.Size(800, 400);
             this.Controls.Add(this.RemoveFileCountL);
-            this.Controls.Add(this.MoveBtn);
             this.Controls.Add(this.ModelsLB);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -255,7 +247,6 @@
         #endregion
 
         private System.Windows.Forms.Button exitBtn;
-        private System.Windows.Forms.Button SelectFileBtn;
         private System.Windows.Forms.OpenFileDialog opf;
         private System.Windows.Forms.Label pathFileL;
         private System.Windows.Forms.ListBox photoFilesLB;
@@ -270,8 +261,8 @@
         private System.Windows.Forms.ListBox ModelsLB;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label ModelsCountL;
-        private System.Windows.Forms.Button MoveBtn;
         private System.Windows.Forms.Label RemoveFileCountL;
+        public System.Windows.Forms.Button SelectFileBtn;
     }
 }
 

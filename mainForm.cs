@@ -17,6 +17,7 @@ namespace catalog_mover
     public partial class mainForm : Form
     {
         public const char comma = ',';
+
         public mainForm()
         {
             InitializeComponent();
@@ -144,15 +145,6 @@ namespace catalog_mover
             };
 
             TempCountL.Text += TempLB.Items.Count;
-
-
-
-
-
-        }
-
-        private void MoveBtn_Click(object sender, EventArgs e)
-        {
 
         }
     }
