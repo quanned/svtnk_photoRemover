@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.exitBtn = new System.Windows.Forms.Button();
             this.SelectFileBtn = new System.Windows.Forms.Button();
-            this.opf = new System.Windows.Forms.OpenFileDialog();
+            this.OFD = new System.Windows.Forms.OpenFileDialog();
             this.pathFileL = new System.Windows.Forms.Label();
             this.photoFilesLB = new System.Windows.Forms.ListBox();
             this.rowCountL = new System.Windows.Forms.Label();
@@ -46,6 +47,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.ModelsCountL = new System.Windows.Forms.Label();
             this.RemoveFileCountL = new System.Windows.Forms.Label();
+            this.MainTimer = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // exitBtn
@@ -65,6 +69,7 @@
             this.exitBtn.Size = new System.Drawing.Size(28, 27);
             this.exitBtn.TabIndex = 0;
             this.exitBtn.UseVisualStyleBackColor = false;
+            this.exitBtn.Visible = false;
             this.exitBtn.Click += new System.EventHandler(this.ExitBtn_Click);
             // 
             // SelectFileBtn
@@ -81,10 +86,10 @@
             this.SelectFileBtn.UseVisualStyleBackColor = false;
             this.SelectFileBtn.Click += new System.EventHandler(this.SelectFileBtn_Click);
             // 
-            // opf
+            // OFD
             // 
-            this.opf.FileName = "openFileDialog1";
-            this.opf.Filter = "Excel files|*.xlsx";
+            this.OFD.FileName = "katalog_ru";
+            this.OFD.Filter = "Excel files|*.xlsx";
             // 
             // pathFileL
             // 
@@ -208,19 +213,47 @@
             this.RemoveFileCountL.AutoSize = true;
             this.RemoveFileCountL.Location = new System.Drawing.Point(614, 367);
             this.RemoveFileCountL.Name = "RemoveFileCountL";
-            this.RemoveFileCountL.Size = new System.Drawing.Size(0, 13);
+            this.RemoveFileCountL.Size = new System.Drawing.Size(54, 13);
             this.RemoveFileCountL.TabIndex = 8;
+            this.RemoveFileCountL.Text = "Progress: ";
+            // 
+            // MainTimer
+            // 
+            this.MainTimer.Interval = 1000;
+            this.MainTimer.Tick += new System.EventHandler(this.MainTimer_Tick);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(663, 362);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(454, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Path list:";
             // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.CancelButton = this.exitBtn;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(800, 400);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.RemoveFileCountL);
             this.Controls.Add(this.ModelsLB);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.columnCountL);
             this.Controls.Add(this.TempCountL);
@@ -234,8 +267,10 @@
             this.Controls.Add(this.pathFileL);
             this.Controls.Add(this.SelectFileBtn);
             this.Controls.Add(this.exitBtn);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "mainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "remove catalog photos";
@@ -247,7 +282,7 @@
         #endregion
 
         private System.Windows.Forms.Button exitBtn;
-        private System.Windows.Forms.OpenFileDialog opf;
+        private System.Windows.Forms.OpenFileDialog OFD;
         private System.Windows.Forms.Label pathFileL;
         private System.Windows.Forms.ListBox photoFilesLB;
         private System.Windows.Forms.Label rowCountL;
@@ -263,6 +298,9 @@
         private System.Windows.Forms.Label ModelsCountL;
         private System.Windows.Forms.Label RemoveFileCountL;
         public System.Windows.Forms.Button SelectFileBtn;
+        private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Timer MainTimer;
+        private System.Windows.Forms.Label label3;
     }
 }
 

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using Microsoft;
 using Microsoft.Office.Interop;
@@ -21,7 +22,7 @@ namespace catalog_mover
         public mainForm()
         {
             InitializeComponent();
-            opf.Filter = "Excel files(*.xlsx)|*.xlsx|Excel files(*.xls)|*.xls|All files(*.*)|*.*";
+            OFD.Filter = "Excel files(*.xlsx)|*.xlsx|Excel files(*.xls)|*.xls|All files(*.*)|*.*";
         }
 
         private void ExitBtn_Click(object sender, EventArgs e)
@@ -32,10 +33,10 @@ namespace catalog_mover
         public void SelectFileBtn_Click(object sender, EventArgs e)
         {
 
-            if (opf.ShowDialog() == DialogResult.Cancel)
+            if (OFD.ShowDialog() == DialogResult.Cancel)
                 return;
             // получаем выбранный файл
-            string catalogFile = opf.FileName;
+            string catalogFile = OFD.FileName;
 
             pathFileL.Text += catalogFile;
             string pathToFile = catalogFile;
@@ -117,8 +118,13 @@ namespace catalog_mover
                 dirInfo.Create();
             };
 
-            int removeFilesCount = 0;
+            
 
+            int removeFilesCount = 0;
+            //RefreshFileCountLabel(0, rowCount);
+            var timer = Stopwatch.StartNew();
+            //MainTimer.Enabled = true;
+            //MainTimer.Start();
             for (int i = 1; i < rowCount; i++)
             {
                 string curFilePath;
@@ -135,17 +141,45 @@ namespace catalog_mover
                 //{
                 //    continue;
                 //}
+               // RefreshFileCountLabel(removeFilesCount, rowCount);
                 removeFilesCount++;
-                RemoveFileCountL.Text = "Progress: " + removeFilesCount + "/" + rowCount;
+                
+                //RemoveFileCountL.Text += removeFilesCount.ToString() + "/" + rowCount.ToString();
                 System.IO.File.Copy(curFilePath, curCatalogPath,  true);
                 if (i == rowCount-1)
                 {
-                    MessageBox.Show("Копирвоание окончено, количество перемещенных файлов: " + removeFilesCount.ToString());
+                    //MainTimer.Stop();
+                    timer.Stop();
+                    int seconds = System.Int32.Parse(((timer.ElapsedMilliseconds / 1000) % 60).ToString());
+                    int minutes = System.Int32.Parse(((timer.ElapsedMilliseconds / 1000) / 60).ToString());
+                    MessageBox.Show("Копирвоание окончено, количество перемещенных файлов: " + removeFilesCount.ToString() + "\rВремя выполнения: " + minutes+":"+ seconds); //+ timer.ElapsedMilliseconds/1000 + " сек");
                 }
             };
 
             TempCountL.Text += TempLB.Items.Count;
 
+        }
+
+        public void RefreshFileCountLabel (int current, int maxCount)
+        {
+            RemoveFileCountL.Text = "Progress: ";
+            RemoveFileCountL.Text += current.ToString() + "/" + maxCount.ToString();
+        }
+
+        public void MainTimer_Tick(object sender, EventArgs e)
+        {
+            //RemoveFileCountL.Text =  "Progress: " + removeFilesCount.ToString() + "/" + rowCount.ToString();
+            DateTime removeTime = new DateTime();
+            DateTime oneSecond = new DateTime(0, 0, 0, 0, 0, 1);
+            //removeTime.AddSeconds(1.0);
+            //removeTime.Add(oneSecond);
+            Console.WriteLine(removeTime);
+            RemoveFileCountL.Text = removeTime.ToString("mm:ss");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MainTimer.Enabled = MainTimer.Enabled ? false : true;
         }
     }
 }
