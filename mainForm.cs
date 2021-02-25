@@ -96,14 +96,6 @@ namespace catalog_mover
                 }
                 else
                 {
-                    //if (morephotoarray[i].indexof(comma) >= 1)
-                    //{
-                    //    string[] morephotosstrarr = morephotoarray[i].split(comma);
-                    //    for(int t = 0; t <= morephotosstrarr.length; t++)
-                    //    {
-                    //        templb.items.add(morephotosstrarr[i]);
-                    //    }
-                    //}
                     morePhotoFilesLB.Items.Add(morePhotoArray[i]);
                 };
             };
@@ -116,8 +108,9 @@ namespace catalog_mover
             if (!dirInfo.Exists)
             {
                 dirInfo.Create();
-            };
-
+            }
+            else MessageBox.Show("Ошибка создания каталога", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
             
 
             int removeFilesCount = 0;
@@ -152,7 +145,8 @@ namespace catalog_mover
                     timer.Stop();
                     int seconds = System.Int32.Parse(((timer.ElapsedMilliseconds / 1000) % 60).ToString());
                     int minutes = System.Int32.Parse(((timer.ElapsedMilliseconds / 1000) / 60).ToString());
-                    MessageBox.Show("Копирвоание окончено, количество перемещенных файлов: " + removeFilesCount.ToString() + "\rВремя выполнения: " + minutes+":"+ seconds); //+ timer.ElapsedMilliseconds/1000 + " сек");
+                    string message = "Копирвоание окончено, количество перемещенных файлов: " + removeFilesCount.ToString() + "\rВремя выполнения: " + minutes + ":" + seconds;
+                    MessageBox.Show(message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //+ timer.ElapsedMilliseconds/1000 + " сек");
                 }
             };
 
@@ -181,5 +175,66 @@ namespace catalog_mover
         {
             MainTimer.Enabled = MainTimer.Enabled ? false : true;
         }
+
+        public void ParseMorePhotoColumn()
+        {
+            int morePhotoListStringCount = morePhotoFilesLB.Items.Count;
+            //string[] morePhotoTempArray = more
+
+            for (int i = 0; i == morePhotoListStringCount; i++)
+            {
+                
+            }
+        }
+
+        public void MorePhotoArraySplit(string[] morephotoarray)
+        {
+            for (int i = 0; i <= morephotoarray.Length;i++)
+            { 
+                string text = morephotoarray[i];
+                
+                string[] photos = text.Split(new char[] { ',', ' ' });  // new char[] - массив символов-разделителей
+               
+                //string finalyPhotoArray[];
+                string first = photos[0];
+                string second = photos[1];
+                string[] thirdPhotos = second.Split(new char[] { ',', ' ' });
+
+                if (thirdPhotos.Length > 1)
+                {
+                    string newSecond = thirdPhotos[0];
+                    string newThird = thirdPhotos[1];
+                    
+                    TempLB.Items.Add(first);
+                    TempLB.Items.Add(thirdPhotos);
+                    TempLB.Items.Add(thirdPhotos);
+                }
+                else TempLB.Items.Add(morephotoarray[i]); //добавить в основной массив
+            }
+        }
+
+        public bool FindPhotoInAllCollection(string fileName)
+        {
+            fileName = "aa";
+            return true;
+        }
+
+        /*public bool CopyFileInTempFolder()
+        {
+            for (int i = 1; i < rowCount; i++)
+            {
+                string curFilePath;
+                if (photoArray[i].IndexOf('_') >= 1)
+                {
+                    curFilePath = String.Concat(catalogPath, "/", photoArray[i].Substring(0, photoArray[i].Length - 4), "/", photoArray[i]);
+                }
+                else curFilePath = String.Concat(catalogPath, "/", photoArray[i]);
+                string curCatalogPath = String.Concat(tempPath, "/", photoArray[i]);
+                TempLB.Items.Add(curFilePath);
+                removeFilesCount++;
+                System.IO.File.Copy(curFilePath, curCatalogPath, true);
+            };
+            return true;
+        }*/
     }
 }

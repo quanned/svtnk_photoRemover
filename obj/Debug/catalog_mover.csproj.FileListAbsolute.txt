@@ -30,3 +30,4 @@ D:\work\svtnk_photoRemover\obj\Debug\catalog_mover.Properties.Resources.resource
 D:\work\svtnk_photoRemover\obj\Debug\catalog_mover.csproj.GenerateResource.Cache
 D:\work\svtnk_photoRemover\bin\Debug\catalog_mover.exe
 D:\work\svtnk_photoRemover\bin\Debug\catalog_mover.pdb
+D:\work\svtnk_photoRemover\obj\Debug\catalog_mover.csprojResolveAssemblyReference.cache
