@@ -11,13 +11,13 @@ using System.Threading;
 using System.Windows.Forms;
 using Microsoft;
 using Microsoft.Office.Interop;
+using System.Text.RegularExpressions;
 
 
 namespace catalog_mover
 {
     public partial class mainForm : Form
     {
-        public const char comma = ',';
 
         public mainForm()
         {
@@ -32,7 +32,7 @@ namespace catalog_mover
 
         public void SelectFileBtn_Click(object sender, EventArgs e)
         {
-
+            //оно работает, поэтому лучше не трогать
             if (OFD.ShowDialog() == DialogResult.Cancel)
                 return;
             // получаем выбранный файл
@@ -48,21 +48,21 @@ namespace catalog_mover
             ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[1];
 
             // Указываем номер столбца (таблицы Excel) из которого будут считываться данные.
-            int photoCol = 2;                      
+            int photoCol = 2;
             Microsoft.Office.Interop.Excel.Range photoColumn = ObjWorkSheet.UsedRange.Columns[photoCol];
             System.Array photoValues = (System.Array)photoColumn.Cells.Value2;
+            //получаем массив данных
             string[] photoArray = photoValues.OfType<object>().Select(o => o.ToString()).ToArray();
 
+            //получаем вспомогательные данные
             int columnsCount = ObjWorkSheet.UsedRange.Columns.Count;
             int rowCount = ObjWorkSheet.UsedRange.Rows.Count;
             rowCountL.Text += rowCount;
             columnCountL.Text += columnsCount;
 
-            for(int i = 1; i < rowCount; i++)
+            for (int i = 1; i < rowCount; i++)
             {
-                
-                    photoFilesLB.Items.Add(photoArray[i]);
-               
+                photoFilesLB.Items.Add(photoArray[i]);
             };
             PhotoCountL.Text += photoFilesLB.Items.Count;
 
@@ -88,21 +88,13 @@ namespace catalog_mover
 
             ObjExcel.Quit();
 
-            for (int i = 1; i < rowCount; i++)
-            {
-                if (morePhotoArray[i] == "")
-                {
-                    continue;
-                }
-                else
-                {
-                    morePhotoFilesLB.Items.Add(morePhotoArray[i]);
-                };
-            };
-            MorePhotoCountL.Text += morePhotoFilesLB.Items.Count;
+            MorePhotoArraySplit(morePhotoArray, rowCount);
 
+            MorePhotoCountL.Text += morePhotoFilesLB.Items.Count;
+            
             string catalogPath = @"j:/katalog";
             string tempPath = @"d:/photo_for_site";
+            int removeFilesCount = 0;
 
             DirectoryInfo dirInfo = new DirectoryInfo(tempPath);
             if (!dirInfo.Exists)
@@ -111,13 +103,14 @@ namespace catalog_mover
             }
             else MessageBox.Show("Ошибка создания каталога", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             
-            
-
-            int removeFilesCount = 0;
-            //RefreshFileCountLabel(0, rowCount);
             var timer = Stopwatch.StartNew();
-            //MainTimer.Enabled = true;
-            //MainTimer.Start();
+
+            CreateMorePhotoPathList(GetMorePhotoSplitCount(), GetSplitMorePhotoArray(), catalogPath, tempPath);
+
+            //ConcatPathArrays(GetMorePhotoPathCount(), GetMorePhotoPathArray());
+
+            RefreshFileCountLabel(0, rowCount);
+
             for (int i = 1; i < rowCount; i++)
             {
                 string curFilePath;
@@ -127,34 +120,28 @@ namespace catalog_mover
                     curFilePath = String.Concat(catalogPath, "/", photoArray[i].Substring(0, photoArray[i].Length - 4), "/", photoArray[i]);
                 }
                 else curFilePath = String.Concat(catalogPath, "/", photoArray[i]);
-               // string curFilePath = String.Concat(catalogPath, "/", photoArray[i].Substring(0, photoArray[i].Length - 4), "/", photoArray[i]);
+                // string curFilePath = String.Concat(catalogPath, "/", photoArray[i].Substring(0, photoArray[i].Length - 4), "/", photoArray[i]);
                 string curCatalogPath = String.Concat(tempPath, "/", photoArray[i]);
                 TempLB.Items.Add(curFilePath);
-                //if (Directory.EnumerateFiles(curCatalogPath, curFilePath, SearchOption.TopDirectoryOnly).Count() == 0)
-                //{
-                //    continue;
-                //}
-               // RefreshFileCountLabel(removeFilesCount, rowCount);
-                removeFilesCount++;
-                
+
                 //RemoveFileCountL.Text += removeFilesCount.ToString() + "/" + rowCount.ToString();
                 System.IO.File.Copy(curFilePath, curCatalogPath,  true);
+                removeFilesCount++;
+                RefreshFileCountLabel(i, rowCount - 1);
                 if (i == rowCount-1)
                 {
-                    //MainTimer.Stop();
                     timer.Stop();
                     int seconds = System.Int32.Parse(((timer.ElapsedMilliseconds / 1000) % 60).ToString());
                     int minutes = System.Int32.Parse(((timer.ElapsedMilliseconds / 1000) / 60).ToString());
-                    string message = "Копирвоание окончено, количество перемещенных файлов: " + removeFilesCount.ToString() + "\rВремя выполнения: " + minutes + ":" + seconds;
+                    string message = "Копирвоание окончено, количество перемещенных моделей: " +  removeFilesCount.ToString() + " + \rВремя выполнения: " + minutes + ":" + seconds;
                     MessageBox.Show(message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //+ timer.ElapsedMilliseconds/1000 + " сек");
                 }
             };
-
             TempCountL.Text += TempLB.Items.Count;
 
         }
 
-        public void RefreshFileCountLabel (int current, int maxCount)
+        public void RefreshFileCountLabel(int current, int maxCount)
         {
             RemoveFileCountL.Text = "Progress: ";
             RemoveFileCountL.Text += current.ToString() + "/" + maxCount.ToString();
@@ -164,7 +151,7 @@ namespace catalog_mover
         {
             //RemoveFileCountL.Text =  "Progress: " + removeFilesCount.ToString() + "/" + rowCount.ToString();
             DateTime removeTime = new DateTime();
-            DateTime oneSecond = new DateTime(0, 0, 0, 0, 0, 1);
+            //DateTime oneSecond = new DateTime(0, 0, 0, 0, 0, 1);
             //removeTime.AddSeconds(1.0);
             //removeTime.Add(oneSecond);
             Console.WriteLine(removeTime);
@@ -176,65 +163,129 @@ namespace catalog_mover
             MainTimer.Enabled = MainTimer.Enabled ? false : true;
         }
 
-        public void ParseMorePhotoColumn()
+        /*public void CopyFiles(string[] photoArray, int arrayLength)
         {
-            int morePhotoListStringCount = morePhotoFilesLB.Items.Count;
-            //string[] morePhotoTempArray = more
-
-            for (int i = 0; i == morePhotoListStringCount; i++)
+            var timer = Stopwatch.StartNew();
+            int removeFilesCount = 0;
+            string sourceFileName , destFileName ;
+            string photoForSitePath = @"d:/photo_for_site";
+            for (int i = 0; i < arrayLength; i++)
             {
-                
-            }
-        }
-
-        public void MorePhotoArraySplit(string[] morephotoarray)
-        {
-            for (int i = 0; i <= morephotoarray.Length;i++)
-            { 
-                string text = morephotoarray[i];
-                
-                string[] photos = text.Split(new char[] { ',', ' ' });  // new char[] - массив символов-разделителей
-               
-                //string finalyPhotoArray[];
-                string first = photos[0];
-                string second = photos[1];
-                string[] thirdPhotos = second.Split(new char[] { ',', ' ' });
-
-                if (thirdPhotos.Length > 1)
+                sourceFileName = photoArray[i];
+                destFileName = photoForSitePath + ;
+                System.IO.File.Copy(sourceFileName, destFileName, true);
+                removeFilesCount++;
+                RefreshFileCountLabel(i, arrayLength - 1);
+                if (i == arrayLength - 1)
                 {
-                    string newSecond = thirdPhotos[0];
-                    string newThird = thirdPhotos[1];
-                    
-                    TempLB.Items.Add(first);
-                    TempLB.Items.Add(thirdPhotos);
-                    TempLB.Items.Add(thirdPhotos);
+                    //MainTimer.Stop();
+                    timer.Stop();
+                    int seconds = System.Int32.Parse(((timer.ElapsedMilliseconds / 1000) % 60).ToString());
+                    int minutes = System.Int32.Parse(((timer.ElapsedMilliseconds / 1000) / 60).ToString());
+                    string message = "Копирвоание окончено, количество перемещенных файлов: " + removeFilesCount.ToString() + "\rВремя выполнения: " + minutes + ":" + seconds;
+                    MessageBox.Show(message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //+ timer.ElapsedMilliseconds/1000 + " сек");
                 }
-                else TempLB.Items.Add(morephotoarray[i]); //добавить в основной массив
             }
-        }
+        }*/
 
-        public bool FindPhotoInAllCollection(string fileName)
-        {
-            fileName = "aa";
-            return true;
-        }
 
-        /*public bool CopyFileInTempFolder()
+        public void MorePhotoArraySplit(string[] morePhotoArray, int rowCount)
         {
             for (int i = 1; i < rowCount; i++)
             {
-                string curFilePath;
-                if (photoArray[i].IndexOf('_') >= 1)
+                if (morePhotoArray[i] == "")
                 {
-                    curFilePath = String.Concat(catalogPath, "/", photoArray[i].Substring(0, photoArray[i].Length - 4), "/", photoArray[i]);
+                    continue;
                 }
-                else curFilePath = String.Concat(catalogPath, "/", photoArray[i]);
-                string curCatalogPath = String.Concat(tempPath, "/", photoArray[i]);
-                TempLB.Items.Add(curFilePath);
-                removeFilesCount++;
-                System.IO.File.Copy(curFilePath, curCatalogPath, true);
+                else
+                {
+                    MatchCollection matches = Regex.Matches(morePhotoArray[i], ",");
+                    if (matches.Count == 0) //если одна - добавить
+                    {
+                        morePhotoFilesLB.Items.Add(morePhotoArray[i]);
+                    }
+                    else //иначе разложить на необходимое количество моделей и добавить в массив все
+                    {
+                        morePhotoFilesLB.Items.Add(morePhotoArray[i]);
+                        string s = morePhotoArray[i];
+                        string[] words = s.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                        for (int j = 0; j < words.Count(); j++)
+                        {
+                            string tempWord = words[j].Trim(new char[] { ' ' });
+                            if (tempWord.Contains(".jpg")) //фильтрует неполноценные имена фоток
+                            {
+                                TLB.Items.Add(tempWord);
+                            }
+                            else continue;
+                        }
+                    }
+                };
             };
-            return true;
-        }*/
-    }
+        }
+
+        private int GetMorePhotoSplitCount()
+        {
+            return TLB.Items.Count;
+        }
+
+        private int GetMorePhotoPathCount()
+        {
+            return MorePhotoPathListLB.Items.Count;
+        }
+
+        private string[] GetSplitMorePhotoArray()
+        {
+            int itemCount = TLB.Items.Count;
+            string[] stopWordArray = new string[itemCount];
+
+            for (int i = 0; i < itemCount; i++)
+            {
+                stopWordArray[i] = TLB.Items[i].ToString();
+            }
+            return stopWordArray;
+        }
+
+        private string[] GetMorePhotoPathArray()
+        {
+            int itemCount = MorePhotoPathListLB.Items.Count;
+            string[] stopWordArray = new string[itemCount];
+
+            for (int i = 0; i < itemCount; i++)
+            {
+                stopWordArray[i] = MorePhotoPathListLB.Items[i].ToString();
+            }
+            return stopWordArray;
+        }
+
+        private void ConcatPathArrays(int morePhotoPathCount, string[] morePhotoPathArray)
+        {
+            int rowCount = morePhotoPathCount;
+            for (int i = 0; i < rowCount; i++)
+            {
+                TempLB.Items.Add(morePhotoPathArray[i]);
+            }
+        }
+
+        public void CreateMorePhotoPathList(int morePhotoCount, string[] morePhotoArray, string catalogPath, string tempPath)
+        {
+            for (int i = 0; i < morePhotoCount - 1; i++)
+            {
+                string curFilePath;
+                //string curFilePath = String.Concat(catalogPath, "/", modelsArray[i], "/", photoArray[i]);
+                if (morePhotoArray[i].IndexOf('_') >= 1)
+                {
+                    curFilePath = String.Concat(catalogPath, "/", morePhotoArray[i].Substring(0, morePhotoArray[i].Length - 4), "/", morePhotoArray[i]);
+                }
+                else curFilePath = String.Concat(catalogPath, "/", morePhotoArray[i]);
+                //string curFilePath = String.Concat(catalogPath, "/", photoArray[i].Substring(0, photoArray[i].Length - 4), "/", photoArray[i]);
+                string curCatalogPath = String.Concat(tempPath, "/", morePhotoArray[i]);
+
+                MorePhotoPathListLB.Items.Add(curFilePath);
+
+                System.IO.File.Copy(curFilePath, curCatalogPath, true);
+            }
+            label7.Text += GetMorePhotoPathCount();
+        }
+
+        }
 }

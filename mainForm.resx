@@ -117,23 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="exitBtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABGdBTUEAALGPC/xhBQAAAQVJREFUSEu9
-        1msKwjAQBOCeywf4R88gKuipRA/k6zq+/ijoTOhCGia0xY0LH9RJm221ramiWsEFnvD5Eec4wxIatQd1
-        gIcdhOKVqB08LSBcohr0dASX36TNA+RACTIsQYbmDRuYwa3OYsw4toZXneXI0LCJ1QjiZtwegxWbxcem
-        ZGh4tnFZM+J2XFNQcxgZGjUhP6vsCmoOI8PYHSaQqyG0NSEZpnLNujYhGaZyjQbg1qjtq+vaTIamz83A
-        fdUcRoamz+3NfdUcRoaGD6FVetZps58eWL5WOEHxV5AnGZbwvz++UxSUcoCwJFKDnuYQiksitYOHLTSK
-        SyKuVrwWkJyrvpKq+gI98zq5g5DOswAAAABJRU5ErkJggg==
-</value>
-  </data>
   <metadata name="OFD.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <metadata name="MainTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>87, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAAOgAAAEAIAAovQMAFgAAACgAAAAAAQAA0AEAAAEAIAAAAAAAAKADAAAAAAAAAAAAAAAAAAAA
