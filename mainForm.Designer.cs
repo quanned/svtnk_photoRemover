@@ -60,15 +60,22 @@
             // 
             // SelectFileBtn
             // 
-            this.SelectFileBtn.BackColor = System.Drawing.Color.Black;
-            this.SelectFileBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SelectFileBtn.BackColor = System.Drawing.Color.Transparent;
+            this.SelectFileBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SelectFileBtn.BackgroundImage")));
+            this.SelectFileBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.SelectFileBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SelectFileBtn.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.SelectFileBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.SelectFileBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.SelectFileBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SelectFileBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SelectFileBtn.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.SelectFileBtn.Location = new System.Drawing.Point(384, 590);
+            this.SelectFileBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.SelectFileBtn.Location = new System.Drawing.Point(357, 585);
             this.SelectFileBtn.Name = "SelectFileBtn";
-            this.SelectFileBtn.Size = new System.Drawing.Size(191, 27);
+            this.SelectFileBtn.Size = new System.Drawing.Size(180, 32);
             this.SelectFileBtn.TabIndex = 1;
-            this.SelectFileBtn.Text = "select file and move photo";
+            this.SelectFileBtn.Text = "import file";
+            this.SelectFileBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.SelectFileBtn.UseVisualStyleBackColor = false;
             this.SelectFileBtn.Click += new System.EventHandler(this.SelectFileBtn_Click);
             // 

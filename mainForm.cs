@@ -91,7 +91,7 @@ namespace catalog_mover
             MorePhotoArraySplit(morePhotoArray, rowCount);
 
             MorePhotoCountL.Text += morePhotoFilesLB.Items.Count;
-            
+
             string catalogPath = @"j:/katalog";
             string tempPath = @"d:/photo_for_site";
             int removeFilesCount = 0;
@@ -102,7 +102,7 @@ namespace catalog_mover
                 dirInfo.Create();
             }
             else MessageBox.Show("Ошибка создания каталога", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            
+
             var timer = Stopwatch.StartNew();
 
             CreateMorePhotoPathList(GetMorePhotoSplitCount(), GetSplitMorePhotoArray(), catalogPath, tempPath);
@@ -125,15 +125,15 @@ namespace catalog_mover
                 TempLB.Items.Add(curFilePath);
 
                 //RemoveFileCountL.Text += removeFilesCount.ToString() + "/" + rowCount.ToString();
-                System.IO.File.Copy(curFilePath, curCatalogPath,  true);
+                System.IO.File.Copy(curFilePath, curCatalogPath, true);
                 removeFilesCount++;
                 RefreshFileCountLabel(i, rowCount - 1);
-                if (i == rowCount-1)
+                if (i == rowCount - 1)
                 {
                     timer.Stop();
                     int seconds = System.Int32.Parse(((timer.ElapsedMilliseconds / 1000) % 60).ToString());
                     int minutes = System.Int32.Parse(((timer.ElapsedMilliseconds / 1000) / 60).ToString());
-                    string message = "Копирвоание окончено, количество перемещенных моделей: " +  removeFilesCount.ToString() + " + \rВремя выполнения: " + minutes + ":" + seconds;
+                    string message = "Копирвоание окончено, количество перемещенных моделей: " + removeFilesCount.ToString() + " + \rВремя выполнения: " + minutes + ":" + seconds;
                     MessageBox.Show(message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //+ timer.ElapsedMilliseconds/1000 + " сек");
                 }
             };
@@ -287,5 +287,5 @@ namespace catalog_mover
             label7.Text += GetMorePhotoPathCount();
         }
 
-        }
+    }
 }
