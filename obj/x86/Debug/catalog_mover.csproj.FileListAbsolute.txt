@@ -1,0 +1,12 @@
+D:\project\svtnk_photoRemover\bin\x86\Debug\catalog_mover.exe.config
+D:\project\svtnk_photoRemover\bin\x86\Debug\catalog_mover.exe
+D:\project\svtnk_photoRemover\bin\x86\Debug\catalog_mover.pdb
+D:\project\svtnk_photoRemover\obj\x86\Debug\catalog_mover.csproj.AssemblyReference.cache
+D:\project\svtnk_photoRemover\obj\x86\Debug\catalog_mover.csproj.SuggestedBindingRedirects.cache
+D:\project\svtnk_photoRemover\obj\x86\Debug\catalog_mover.csproj.ResolveComReference.cache
+D:\project\svtnk_photoRemover\obj\x86\Debug\catalog_mover.mainForm.resources
+D:\project\svtnk_photoRemover\obj\x86\Debug\catalog_mover.Properties.Resources.resources
+D:\project\svtnk_photoRemover\obj\x86\Debug\catalog_mover.csproj.GenerateResource.cache
+D:\project\svtnk_photoRemover\obj\x86\Debug\catalog_mover.csproj.CoreCompileInputs.cache
+D:\project\svtnk_photoRemover\obj\x86\Debug\catalog_mover.exe
+D:\project\svtnk_photoRemover\obj\x86\Debug\catalog_mover.pdb

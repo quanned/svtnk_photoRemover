@@ -52,7 +52,6 @@
             this.TLB = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.splitter1 = new System.Windows.Forms.Splitter();
             this.MorePhotoPathListLB = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -70,9 +69,9 @@
             this.SelectFileBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SelectFileBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.SelectFileBtn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.SelectFileBtn.Location = new System.Drawing.Point(357, 585);
+            this.SelectFileBtn.Location = new System.Drawing.Point(345, 590);
             this.SelectFileBtn.Name = "SelectFileBtn";
-            this.SelectFileBtn.Size = new System.Drawing.Size(180, 32);
+            this.SelectFileBtn.Size = new System.Drawing.Size(194, 28);
             this.SelectFileBtn.TabIndex = 1;
             this.SelectFileBtn.Text = "import file";
             this.SelectFileBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -261,14 +260,6 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "MorePhoto\'s files list:";
             // 
-            // splitter1
-            // 
-            this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 630);
-            this.splitter1.TabIndex = 13;
-            this.splitter1.TabStop = false;
-            // 
             // MorePhotoPathListLB
             // 
             this.MorePhotoPathListLB.FormattingEnabled = true;
@@ -305,7 +296,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.MorePhotoPathListLB);
-            this.Controls.Add(this.splitter1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.TLB);
@@ -360,7 +350,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Label label6;
         public System.Windows.Forms.ListBox TLB;
         public System.Windows.Forms.ListBox MorePhotoPathListLB;
