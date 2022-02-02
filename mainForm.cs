@@ -98,7 +98,7 @@ namespace catalog_mover
             }
         }
 
-        public void CopyFiles(string[] photoArray, string[] morePhotoArray, int rowCount)
+        public async void CopyFiles(string[] photoArray, string[] morePhotoArray, int rowCount)
         {
             MorePhotoArraySplit(morePhotoArray, rowCount);
 

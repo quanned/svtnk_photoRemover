@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>moverIco.ico</ApplicationIcon>
+    <ApplicationIcon>logo_new.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -170,7 +170,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="logo_new.ico" />
     <Content Include="moverIco.ico" />
+    <SplashScreen Include="Resources\logo_new.png" />
     <Content Include="Resources\mover.ico" />
     <SplashScreen Include="Resources\mover.png" />
     <Content Include="Resources\mover.svg" />
