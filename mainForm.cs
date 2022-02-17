@@ -18,6 +18,10 @@ namespace catalog_mover
 {
     public partial class mainForm : Form
     {
+        //ListBox TLB = new ListBox();
+        //ListBox TempLB = new ListBox();
+        //ListBox MorePhotoPathListLB = new ListBox();
+
 
         public mainForm()
         {
@@ -91,6 +95,7 @@ namespace catalog_mover
                 ObjExcel.Quit();
 
                 CopyFiles(photoArray, morePhotoArray, rowCount);
+
             }
             catch (Exception exc)
             {
@@ -98,7 +103,7 @@ namespace catalog_mover
             }
         }
 
-        public async void CopyFiles(string[] photoArray, string[] morePhotoArray, int rowCount)
+        public void CopyFiles(string[] photoArray, string[] morePhotoArray, int rowCount)
         {
             MorePhotoArraySplit(morePhotoArray, rowCount);
 
@@ -122,6 +127,8 @@ namespace catalog_mover
             //ConcatPathArrays(GetMorePhotoPathCount(), GetMorePhotoPathArray());
 
             RefreshFileCountLabel(0, rowCount);
+
+            Thread.Sleep(5000);
 
             for (int i = 1; i < rowCount; i++)
             {
@@ -151,18 +158,19 @@ namespace catalog_mover
                     }
                     if (System.Int32.Parse(minutes) < 10)
                     {
-                        string minutesEnd = string.Concat("0", minutes);
+                        minutes = string.Concat("0", minutes);
                     }else if (System.Int32.Parse(minutes) >= 60)
                     {
                         int days = System.Int32.Parse(minutes) / 60;
                         int hours = System.Int32.Parse(minutes) % 60;
                         minutes = string.Concat(days, ":", hours);
                     }
+
                     string message = "Копирвоание окончено, количество перемещенных моделей: " + removeFilesCount.ToString() + " + \rВремя выполнения: " + minutes + ":" + seconds;
                     MessageBox.Show(message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //+ timer.ElapsedMilliseconds/1000 + " сек");
                 }
             };
-            TempCountL.Text += TempLB.Items.Count;
+            //TempCountL.Text += TempLB.Items.Count;
         }
         void RefreshFileCountLabel(int current, int maxCount)
         {
@@ -179,11 +187,6 @@ namespace catalog_mover
             //removeTime.Add(oneSecond);
             Console.WriteLine(removeTime);
             RemoveFileCountL.Text = removeTime.ToString("mm:ss");
-        }
-
-        public void button1_Click(object sender, EventArgs e)
-        {
-            MainTimer.Enabled = MainTimer.Enabled ? false : true;
         }
 
         /*public void CopyFiles(string[] photoArray, int arrayLength)
@@ -307,7 +310,6 @@ namespace catalog_mover
 
                 System.IO.File.Copy(curFilePath, curCatalogPath, true);
             }
-            label7.Text += GetMorePhotoPathCount();
         }
 
     }
