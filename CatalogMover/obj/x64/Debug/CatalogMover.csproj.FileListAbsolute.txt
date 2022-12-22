@@ -18,3 +18,9 @@ D:\project\svtnk_photoRemover\CatalogMover\obj\x64\Debug\CatalogMover.csproj.Gen
 D:\project\svtnk_photoRemover\CatalogMover\obj\x64\Debug\CatalogMover.csproj.CoreCompileInputs.cache
 D:\project\svtnk_photoRemover\CatalogMover\obj\x64\Debug\CatalogMover.exe
 D:\project\svtnk_photoRemover\CatalogMover\obj\x64\Debug\CatalogMover.pdb
+D:\project\svtnk_photoRemover\CatalogMover\bin\x64\Debug\Microsoft.WindowsAPICodePack.dll
+D:\project\svtnk_photoRemover\CatalogMover\bin\x64\Debug\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll
+D:\project\svtnk_photoRemover\CatalogMover\bin\x64\Debug\Microsoft.WindowsAPICodePack.Sensors.dll
+D:\project\svtnk_photoRemover\CatalogMover\bin\x64\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+D:\project\svtnk_photoRemover\CatalogMover\bin\x64\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.dll
+D:\project\svtnk_photoRemover\CatalogMover\obj\x64\Debug\CatalogMover.csproj.CopyComplete

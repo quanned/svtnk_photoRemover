@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CatalogMover"
         mc:Ignorable="d"
-        Title="CatalogMover" Height="457" Width="1124">
+        Title="CatalogMover" Height="627" Width="962">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition />
-            <RowDefinition Height="50.04"/>
+            <RowDefinition Height="197.04"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -19,16 +19,34 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <ListBox x:Name="ModelsListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="1" Margin="10,0,0,0"/>
-        <ListBox x:Name="PhotosListBox" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="1" Margin="5,0,2,0" MouseDoubleClick="PhotosListBox_MouseDoubleClick"/>
-        <ListBox x:Name="MorePhotosListBox" Grid.Column="2" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="1" Margin="2,0,5,0" MouseDoubleClick="MorePhotosListBox_MouseDoubleClick"/>
+        <ListBox x:Name="PhotosListBox" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="1" Margin="6,0,2,0" MouseDoubleClick="PhotosListBox_MouseDoubleClick"/>
+        <ListBox x:Name="MorePhotosListBox" Grid.Column="2" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="1" Margin="2,0,6,0" MouseDoubleClick="MorePhotosListBox_MouseDoubleClick"/>
         <ListBox x:Name="FilesListBox" Grid.Column="3" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="1" Margin="0,0,10,0" MouseDoubleClick="FilesListBox_MouseDoubleClick"/>
-        <Button x:Name="LoadFileButton" Grid.Column="1" Content="Load file" Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="29" Margin="0,0,10,0" Click="LoadFileButton_Click"/>
+        <Button x:Name="LoadFileButton" Grid.Column="3" Content="Load file" Grid.Row="2" Margin="0,0,116,10" Click="LoadFileButton_Click" Height="20" VerticalAlignment="Bottom"/>
         <Label Content="Models list" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26" Width="67"/>
-        <Label Content="Photos" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Grid.Column="1" Height="26" Width="47"/>
+        <Label Content="Photos" HorizontalAlignment="Left" Margin="6,0,0,0" VerticalAlignment="Center" Grid.Column="1" Height="26" Width="46"/>
         <Label Content="More photos" HorizontalAlignment="Left" Margin="2,0,0,0" VerticalAlignment="Center" Grid.Column="2" Height="26" Width="79"/>
-        <Label Content="Files" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="3" Height="26" Width="33"/>
+        <Label Content="Files" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="3" Height="26" Width="32"/>
         <Label x:Name="FilesListBoxCount" Grid.Column="3" Content="Количество файлов: " Grid.Row="2" VerticalAlignment="Top" Margin="0,5,10,0" Height="26"/>
-        <Label x:Name="ModelsListBoxCount" Content="Количество моделей: " HorizontalAlignment="Right" Margin="0,5,10,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="261"/>
+        <Label x:Name="ModelsListBoxCount" Content="Количество моделей: " Margin="10,5,10,0" Grid.Row="2" VerticalAlignment="Top" Height="26"/>
+        <Button x:Name="ExitBTN" Grid.Column="3" Content="Exit" Margin="0,0,10,10" Grid.Row="2" HorizontalAlignment="Right" Width="100" Height="20" VerticalAlignment="Bottom" Click="ExitBTN_Click"/>
+        <GroupBox Header="Выбор папок" Grid.Row="2" Margin="10,31,10,40" Grid.ColumnSpan="4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBox x:Name="PathToCatalogFolderTB" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,31,10,0" Height="20" TextChanged="PathToCatalogFolderTB_TextChanged"/>
+                <TextBox x:Name="PathToFinalFolderTB" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,77,10,0" Height="20" TextChanged="PathToFinalFolderTB_TextChanged"/>
+                <Button x:Name="ChooseCatalogPathBTN" Content="Choose folder" VerticalAlignment="Top" Margin="10,31,10,0" Grid.Column="1" Height="20" Click="ChooseCatalogPathBTN_Click"/>
+                <Button x:Name="ChooseFinalPathBTN" Content="Choose folder" VerticalAlignment="Top" Margin="10,77,10,0" Height="20" Grid.Column="1" Click="ChooseFinalPathBTN_Click"/>
+                <Label Content="Path to temp files pool" Margin="10,51,10,0" VerticalAlignment="Top"/>
+                <Label Content="Path to catalog" Margin="10,5,10,0" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
 
     </Grid>
 </Window>

@@ -24,6 +24,7 @@ using Microsoft.Win32;
 using Microsoft.Office.Interop;
 using System.Text.RegularExpressions;
 using MessageBox = System.Windows.MessageBox;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace CatalogMover
 {
@@ -36,8 +37,8 @@ namespace CatalogMover
 
         System.Windows.Controls.ListBox TLB = new System.Windows.Controls.ListBox();
         System.Windows.Controls.ListBox TempLBForMorePhotoFiles = new System.Windows.Controls.ListBox();
-        string catalogPath = @"j:/katalog";
-        string tempPath = @"d:/photo_for_site";
+        string catalogPath;
+        string tempPath;
         int copiedFilesCount = 0;
         int copyErrors = 0;
 
@@ -47,7 +48,13 @@ namespace CatalogMover
             InitializeComponent();
             FilesListBoxCount.Visibility = Visibility.Hidden;
             ModelsListBoxCount.Visibility = Visibility.Hidden;
+            PathToCatalogFolderTB.Text = @"J:\katalog";
+            PathToFinalFolderTB.Text = @"D:\photo_for_site";
+            catalogPath = PathToCatalogFolderTB.Text;
+            tempPath = PathToFinalFolderTB.Text;
         }
+
+
 
         public string OpenFile()
         {
@@ -318,6 +325,55 @@ namespace CatalogMover
             else path = String.Concat(catalogPath, "/", fileName.Length - 4);
 
             System.Diagnostics.Process.Start(path);
+        }
+
+        private void ExitBTN_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private string ChooseFolderPath()
+        {
+            var dialog = new CommonOpenFileDialog();
+            dialog.IsFolderPicker = true;
+            CommonFileDialogResult result = dialog.ShowDialog();
+            return dialog.FileName.ToString();
+        }
+
+        private void ChooseCatalogPathBTN_Click(object sender, RoutedEventArgs e)
+        {
+            string path = ChooseFolderPath();
+            if (path != null)
+            {
+                PathToCatalogFolderTB.Text = path;
+            }
+            else
+            {
+                MessageBox.Show("Путь \"" + path + "\" не найден. Повторите выбор папки", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ChooseFinalPathBTN_Click(object sender, RoutedEventArgs e)
+        {
+            string path = ChooseFolderPath();
+            if (path != null)
+            {
+                PathToFinalFolderTB.Text = path;
+            }
+            else
+            {
+                MessageBox.Show("Путь \"" + path + "\" не найден. Повторите выбор папки", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void PathToCatalogFolderTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            catalogPath = PathToCatalogFolderTB.Text.ToString();
+        }
+
+        private void PathToFinalFolderTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            tempPath = PathToFinalFolderTB.Text.ToString();
         }
     }
 }
