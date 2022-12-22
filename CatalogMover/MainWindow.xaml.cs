@@ -59,10 +59,18 @@ namespace CatalogMover
         public string OpenFile()
         {
             // Configure open file dialog box
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.FileName = "katalog_ru"; // Default file name
-            dlg.DefaultExt = ".xlsx"; // Default file extension
-            dlg.Filter = "Excel documents (.xlsx)|*.xlsx"; // Filter files by extension
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
+            {
+                FileName = "katalog_ru", // Default file name
+                DefaultExt = ".xlsx", // Default file extension
+                Filter = "Excel documents (.xlsx)|*.xlsx" // Filter files by extension
+            };
+
+            /*           Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                       dlg.FileName = "katalog_ru"; // Default file name
+                       dlg.DefaultExt = ".xlsx"; // Default file extension
+                       dlg.Filter = "Excel documents (.xlsx)|*.xlsx"; // Filter files by extension
+           */
 
             // Show open file dialog box
             Nullable<bool> result = dlg.ShowDialog();
@@ -334,8 +342,10 @@ namespace CatalogMover
 
         private string ChooseFolderPath()
         {
-            var dialog = new CommonOpenFileDialog();
-            dialog.IsFolderPicker = true;
+            var dialog = new CommonOpenFileDialog
+            {
+                IsFolderPicker = true
+            };
             CommonFileDialogResult result = dialog.ShowDialog();
             return dialog.FileName.ToString();
         }
@@ -374,6 +384,13 @@ namespace CatalogMover
         private void PathToFinalFolderTB_TextChanged(object sender, TextChangedEventArgs e)
         {
             tempPath = PathToFinalFolderTB.Text.ToString();
+        }
+
+        private void CopyCatalog_Click(object sender, RoutedEventArgs e)
+        {
+            CopyCatalogWindow copyWindow = new CopyCatalogWindow();
+            copyWindow.Show();
+            copyWindow.Owner = this;
         }
     }
 }

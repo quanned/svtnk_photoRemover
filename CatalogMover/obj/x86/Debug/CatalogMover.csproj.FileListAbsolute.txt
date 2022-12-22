@@ -24,3 +24,5 @@ D:\project\svtnk_photoRemover\CatalogMover\bin\x86\Debug\Microsoft.WindowsAPICod
 D:\project\svtnk_photoRemover\CatalogMover\bin\x86\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 D:\project\svtnk_photoRemover\CatalogMover\bin\x86\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.dll
 D:\project\svtnk_photoRemover\CatalogMover\obj\x86\Debug\CatalogMover.csproj.CopyComplete
+D:\project\svtnk_photoRemover\CatalogMover\obj\x86\Debug\CopyCatalogWindow.g.cs
+D:\project\svtnk_photoRemover\CatalogMover\obj\x86\Debug\CopyCatalogWindow.baml

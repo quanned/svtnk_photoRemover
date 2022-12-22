@@ -1,0 +1,20 @@
+﻿<Window x:Class="CatalogMover.CopyCatalogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CatalogMover"
+        mc:Ignorable="d"
+        Title="CopyCatalogWindow" Height="217" Width="287" MinWidth="300" MinHeight="220">
+    <Grid>
+        <Button x:Name="CompressFilesBTN" Content="Go" Margin="15,122,29,0" VerticalAlignment="Top" Click="CompressFilesBTN_Click"/>
+        <TextBox x:Name="FromTB" Margin="57,14,29,0" TextWrapping="Wrap" Text="d:\katalog" VerticalAlignment="Top"/>
+        <TextBox x:Name="ToTB" Margin="42,45,29,0" TextWrapping="Wrap" Text="d:\temp\katalog" VerticalAlignment="Top"/>
+        <CheckBox x:Name="_300kbCB" Content="Копировать файлы &lt;100 КБ" Margin="15,72,33,0" VerticalAlignment="Top" IsEnabled="False" IsChecked="True"/>
+        <CheckBox x:Name="FullHDCB" Content="Сжимать до 1920х1080" Margin="15,97,60,0" VerticalAlignment="Top" IsChecked="True" IsEnabled="False"/>
+        <Label x:Name="ToBTN" Content="To" HorizontalAlignment="Left" Margin="15,41,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="FromBTN" Content="From" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="CountFilesL" Content="Count files: " HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

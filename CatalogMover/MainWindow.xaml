@@ -47,6 +47,7 @@
                 <Label Content="Path to catalog" Margin="10,5,10,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
+        <Button x:Name="CopyCatalog" Content="Copy Catalog" HorizontalAlignment="Center" Margin="0,167,0,0" Grid.Row="2" VerticalAlignment="Top" Width="220" Click="CopyCatalog_Click"/>
 
     </Grid>
 </Window>
