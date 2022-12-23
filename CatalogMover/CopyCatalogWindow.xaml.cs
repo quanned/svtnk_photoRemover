@@ -35,8 +35,10 @@ namespace CatalogMover
             try
             {
                 string[] katalogFoldersList = GetFoldersFromDirectory(GetPathFROM());
+                string[] katalogFilesList = GetFilesFromDirectory(GetPathFROM());
 
-                CountFilesL.Content = "Files count: " + katalogFoldersList.Length.ToString();
+                CountFilesL.Content = "Folders count: " + katalogFoldersList.Length.ToString() + " + ";
+                CountFilesL.Content += katalogFoldersList.Length.ToString();
                 int counter = 0;
                 var timer = Stopwatch.StartNew();
 
@@ -92,7 +94,7 @@ namespace CatalogMover
                 }
 
 
-                string[] katalogFilesList = GetFilesFromDirectory(GetPathFROM());
+                
 
                 /*foreach(string katalogFile in katalogFilesList)
                 {

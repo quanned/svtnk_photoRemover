@@ -1,7 +1,6 @@
 D:\project\svtnk_photoRemover\CatalogMover\bin\x64\Debug\CatalogMover.exe.config
 D:\project\svtnk_photoRemover\CatalogMover\bin\x64\Debug\CatalogMover.exe
 D:\project\svtnk_photoRemover\CatalogMover\bin\x64\Debug\CatalogMover.pdb
-D:\project\svtnk_photoRemover\CatalogMover\obj\x64\Debug\CatalogMover.csproj.AssemblyReference.cache
 D:\project\svtnk_photoRemover\CatalogMover\obj\x64\Debug\CatalogMover.csproj.SuggestedBindingRedirects.cache
 D:\project\svtnk_photoRemover\CatalogMover\obj\x64\Debug\Interop.LCC11.dll
 D:\project\svtnk_photoRemover\CatalogMover\obj\x64\Debug\Interop.MsoEuro.dll
@@ -26,3 +25,4 @@ D:\project\svtnk_photoRemover\CatalogMover\bin\x64\Debug\Microsoft.WindowsAPICod
 D:\project\svtnk_photoRemover\CatalogMover\obj\x64\Debug\CatalogMover.csproj.CopyComplete
 D:\project\svtnk_photoRemover\CatalogMover\obj\x64\Debug\CopyCatalogWindow.g.cs
 D:\project\svtnk_photoRemover\CatalogMover\obj\x64\Debug\CopyCatalogWindow.baml
+D:\project\svtnk_photoRemover\CatalogMover\obj\x64\Debug\CatalogMover.csproj.AssemblyReference.cache
