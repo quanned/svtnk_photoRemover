@@ -1,0 +1,1 @@
+pingo.exe -jpgquality=100 -resize=1920 filename.jpg
