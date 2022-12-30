@@ -34,12 +34,16 @@ namespace CatalogMover
         {
             try
             {
+                Console.WriteLine("Список обрабатываемых файлов и каталогов (" + DateTime.Now.ToString() + "):");
                 string[] katalogFoldersList = GetFoldersFromDirectory(GetPathFROM());
                 string[] katalogFilesList = GetFilesFromDirectory(GetPathFROM());
+                Console.WriteLine("Количество подпапок = {0}, количество файлов в корне = {1}", katalogFoldersList.Length, katalogFilesList.Length); //, 
 
-                CountFilesL.Content = "Folders count: " + katalogFoldersList.Length.ToString() + " + ";
-                CountFilesL.Content += katalogFoldersList.Length.ToString();
-                int counter = 0;
+                //CountFilesL.Content = "Folders count: " + katalogFoldersList.Length.ToString() + " + ";
+                //CountFilesL.Content += katalogFoldersList.Length.ToString();
+                int errorCounter = 0;
+                int copyCounter = 0;
+                int resizeCounter = 0;
                 var timer = Stopwatch.StartNew();
 
                 for (int i = 0; i < katalogFoldersList.Length; i++)
@@ -53,40 +57,48 @@ namespace CatalogMover
                     if (!File.Exists(pathToFileFrom))
                     {
                         continue;
+                        errorCounter++;
                     }
                     else
                     {
                         pathToFileTo = String.Concat(GetPatTO(), @"\", fileName, ".jpg");
                         //Console.WriteLine("Path:" + pathToFileFrom);
                         FileInfo file = new FileInfo(pathToFileFrom);
+                        Console.WriteLine("\nВ обработке файл: " + file.FullName.ToString());
                         long size = file.Length;
-                        Console.WriteLine("Size of {0} file = {1} bytes", file.ToString(), size.ToString());
+                        Console.WriteLine("Размер файла {0} = {1} байт", file.ToString(), size.ToString());
                         if (size <= 1000000)
                         {
                             if (!File.Exists(pathToFileTo))
                             {
                                 File.Copy(pathToFileFrom, pathToFileTo, true);
+                                Console.WriteLine("Копирование файла {0} по пути {1} без сжатия", pathToFileFrom, pathToFileTo);
+                                copyCounter++;
                             }
                             else
                             {
-                                counter++;
+                                Console.WriteLine("Файл {0} на шаге {1} уже существует, скип", pathToFileTo, i.ToString());
+                                errorCounter++;
                                 continue;
                             }
-                            
+
                         }
                         else
                         {
-                            if(!File.Exists(pathToFileTo))
+                            if (!File.Exists(pathToFileTo))
                             {
                                 File.Copy(pathToFileFrom, pathToFileTo);
+                                Console.WriteLine("Копирование файла {0} по пути {1} со сжатием", pathToFileFrom, pathToFileTo);
                                 string command = "/C pingo.exe -jpgquality=100 -resize=1920 " + pathToFileTo.ToString();
-                                Console.WriteLine("Command = {0}", command);
+                                Console.WriteLine("Комманда для сжатия = {0}", command);
                                 System.Diagnostics.Process.Start("CMD.exe", command);
                                 System.Threading.Thread.Sleep(1000);
+                                resizeCounter++;
                             }
                             else
                             {
-                                counter++;
+                                Console.WriteLine("Файл {0} на шаге {1} уже существует, скип", pathToFileTo, i.ToString());
+                                errorCounter++;
                                 continue;
                             }
                         }
@@ -94,66 +106,73 @@ namespace CatalogMover
                 }
 
 
-                
 
-                /*foreach(string katalogFile in katalogFilesList)
+
+               /* foreach (string katalogFile in katalogFilesList)
                 {
                     Console.WriteLine("File: " + katalogFile);
                 }*/
 
-                for (int i = 0; i < katalogFilesList.Length; i++)
+                for (int i = 0; i < katalogFilesList.Length - 1; i++)
                 {
-                    MatchCollection matches = regex.Matches(katalogFilesList[i].Substring(GetPathFROM().Length+1));
+                    MatchCollection matches = regex.Matches(katalogFilesList[i].Substring(GetPathFROM().Length + 1));
                     if (matches.Count > 0)
                     {
                         FileInfo file = new FileInfo(katalogFilesList[i]);
+                        Console.WriteLine("\nВ обработке файл: " + file.FullName.ToString());
                         long size = file.Length;
-                        Console.WriteLine("Size of {0} file = {1} bytes", file.ToString(), size.ToString());
+                        Console.WriteLine("Размер файла {0} = {1} байт", file.ToString(), size.ToString());
                         if (size <= 1000000)
                         {
-                            if (!File.Exists(String.Concat(GetPatTO(), @"\", katalogFilesList[i].Substring(GetPathFROM().Length + 1), true)))
+                            if (!File.Exists(String.Concat(GetPatTO(), @"\", katalogFilesList[i].Substring(GetPathFROM().Length + 1))))
                             {
-                                File.Copy(katalogFilesList[i], String.Concat(GetPatTO(), @"\", katalogFilesList[i].Substring(GetPathFROM().Length + 1)));
+                                File.Copy(katalogFilesList[i], String.Concat(GetPatTO(), @"\", katalogFilesList[i].Substring(GetPathFROM().Length + 1)), true);
+                                copyCounter++;
+                                Console.WriteLine("Копирование файла {0} по пути {1} без сжатия", katalogFilesList[i], String.Concat(GetPatTO(), @"\", katalogFilesList[i].Substring(GetPathFROM().Length + 1)));
                             }
                             else
                             {
-                                counter++;
+                                Console.WriteLine("Файл {0} на шаге {1} уже существует, скип", katalogFilesList[i], i.ToString());
+                                errorCounter++;
                                 continue;
                             }
-
                         }
                         else
                         {
-                            if (!File.Exists(String.Concat(GetPatTO(), @"\", katalogFilesList[i].Substring(GetPathFROM().Length + 1), true)))
+                            if (!File.Exists(String.Concat(GetPatTO(), @"\", katalogFilesList[i].Substring(GetPathFROM().Length + 1))))
                             {
-                                File.Copy(katalogFilesList[i], String.Concat(GetPatTO(), @"\", katalogFilesList[i].Substring(GetPathFROM().Length + 1)));
+                                File.Copy(katalogFilesList[i], String.Concat(GetPatTO(), @"\", katalogFilesList[i].Substring(GetPathFROM().Length)));
+                                Console.WriteLine("Копирование файла {0} по пути {1} со сжатием", katalogFilesList[i], String.Concat(GetPatTO(), @"\", katalogFilesList[i].Substring(GetPathFROM().Length)));
                                 string command = "/C pingo.exe -jpgquality=100 -resize=1920 " + String.Concat(GetPatTO(), @"\", katalogFilesList[i].Substring(GetPathFROM().Length + 1));
-                                 Console.WriteLine("Command = {0}", command);
+                                Console.WriteLine("Комманда для сжатия = {0}", command);
                                 System.Diagnostics.Process.Start("CMD.exe", command);
                                 System.Threading.Thread.Sleep(1000);
+                                resizeCounter++;
                             }
                             else
                             {
-                                counter++;
+                                Console.WriteLine("Файл {0} на шаге {1} уже существует, скип", katalogFilesList[i], i.ToString());
+                                errorCounter++;
                                 continue;
                             }
                         }
                     }
                     else
                     {
-                        Console.WriteLine("\nFile: " + katalogFilesList[i].Substring(GetPathFROM().Length + 1));
-                        Console.WriteLine("Совпадений не найдено");
-                        counter++;
+                        Console.WriteLine("\nВ обработке файл: " + katalogFilesList[i].Substring(GetPathFROM().Length + 1));
+                        Console.WriteLine("Некорректное имя файла, скип");
+                        errorCounter++;
                     }
                 }
 
-                
 
 
                 timer.Stop();
                 int seconds = System.Int32.Parse(((timer.ElapsedMilliseconds / 1000) % 60).ToString());
                 int minutes = System.Int32.Parse(((timer.ElapsedMilliseconds / 1000) / 60).ToString());
-                MessageBox.Show("Копирование завершено, прошло: " + minutes.ToString() + ":" + seconds.ToString() + "\nКоличество ошибок копирования: " + counter.ToString(), "End", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Копирование завершено, время выполнения: " + minutes.ToString() + ":" + seconds.ToString() + "\nКоличество ошибок копирования: " + errorCounter.ToString() + "\nКоличество сжатий: " + resizeCounter.ToString() + "\nКоличество успешных копирований: " + copyCounter.ToString(), "End", MessageBoxButton.OK, MessageBoxImage.Information);
+                Console.WriteLine("Копирование завершено, время выполнения: " + minutes.ToString() + ":" + seconds.ToString() + "\nКоличество ошибок копирования: " + errorCounter.ToString() + "\nКоличество сжатий: " + resizeCounter.ToString() + "\nКоличество успешных копирований: " + copyCounter.ToString(), "End", MessageBoxButton.OK, MessageBoxImage.Information);
+
             }
 
             catch (Exception exc)
