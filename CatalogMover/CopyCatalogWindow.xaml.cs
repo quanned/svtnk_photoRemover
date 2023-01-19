@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Linq;
 
 namespace CatalogMover
 {
@@ -35,8 +36,12 @@ namespace CatalogMover
             try
             {
                 Console.WriteLine("Список обрабатываемых файлов и каталогов (" + DateTime.Now.ToString() + "):");
-                string[] katalogFoldersList = GetFoldersFromDirectory(GetPathFROM());
-                string[] katalogFilesList = GetFilesFromDirectory(GetPathFROM());
+                string[] katalogFoldersList = GetFoldersFromDirectory(GetPathFROM() + @"\");
+                //Console.WriteLine(GetPathFROM() + @"\");
+                //Console.WriteLine(katalogFoldersList.ToString());
+                string[] katalogFilesList = GetFilesFromDirectory(GetPathFROM() + @"\");
+                //Console.WriteLine(GetPatTO() + @"\");
+                //Console.WriteLine(katalogFilesList.ToString());
                 Console.WriteLine("Количество подпапок = {0}, количество файлов в корне = {1}", katalogFoldersList.Length, katalogFilesList.Length); //, 
 
                 //CountFilesL.Content = "Folders count: " + katalogFoldersList.Length.ToString() + " + ";
@@ -209,18 +214,41 @@ namespace CatalogMover
             string path = FromTB.Text.ToString();
             if (Directory.Exists(path))
             {
-                return path;
+                if (path.Substring(path.Length - 1) == @"\")
+                {
+                    string finalPath = path.Remove(path.Length - 1);
+                    //MessageBox.Show("final " + finalPath);
+                    return finalPath;
+                }
+                else
+                {
+                    //MessageBox.Show("start " + path);
+                    return path;
+                }
             }
             else
-                return null;
+            {
+                Directory.CreateDirectory(path);
+                return path;
+            }
         }
 
         string GetPatTO()
         {
             string path = ToTB.Text.ToString();
             if (Directory.Exists(path))
-            {
-                return path;
+            { 
+                if (path.Substring(path.Length - 1) == @"\")
+                {
+                    string finalPath = path.Remove(path.Length - 1);
+                    //MessageBox.Show("final " + finalPath);
+                    return finalPath;
+                }
+                else
+                {
+                    //MessageBox.Show("start " + path);
+                    return path;
+                }
             }
             else
             {
